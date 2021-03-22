@@ -1,6 +1,6 @@
+use std::error::Error;
 use clap::{App, Arg};
 use opencv::{
-    Error, 
     Result, 
     core::{CV_PI, CV_32F, Point2f, RotatedRect, Scalar, Size, Size2f}, 
     dnn::{blob_from_image_to, nms_boxes_rotated, read_net}, 
@@ -11,7 +11,14 @@ use opencv::{
     types::{VectorOfMat, VectorOfPoint2f, VectorOfRotatedRect, VectorOfString, VectorOff32, VectorOfi32}
 };
 
-fn main() -> Result<(), Error> {
+fn main() {
+    if let Err(err) = try_main() {
+        eprintln!("{}", err);
+        std::process::exit(1);
+    }   
+}
+
+fn try_main() -> Result<(), Box<dyn Error>> {
     // parse arguments
     // file: image file
     // weights: network weights
@@ -78,10 +85,10 @@ fn main() -> Result<(), Error> {
         
         bbox.points(&mut vertices.as_mut_slice())?;
         
-        for j in 0..4 {
-            let p1 = vertices.get(j)?.x * ratio.x;
-            let p2 = vertices.get(j)?.y * ratio.y;
-            vertices.set(j, Point2f::new(p1, p2))?;
+        for i in 0..4 {
+            let p1 = vertices.get(i)?.x * ratio.x;
+            let p2 = vertices.get(i)?.y * ratio.y;
+            vertices.set(i, Point2f::new(p1, p2))?;
         }   
         
         for j in 0..4 {
@@ -100,9 +107,10 @@ fn main() -> Result<(), Error> {
     let _ = wait_key(0)?;
 
     Ok(())
+
 }
 
-fn decode(scores: &Mat, geometry: &Mat, score_thresh: f32, detections: &mut VectorOfRotatedRect, confidences: &mut VectorOff32) -> Result<(), Error> {
+fn decode(scores: &Mat, geometry: &Mat, score_thresh: f32, detections: &mut VectorOfRotatedRect, confidences: &mut VectorOff32) -> Result<(), Box<dyn Error>> {
     detections.clear();
 
     let height = scores.mat_size()[2]; 
