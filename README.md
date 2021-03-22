@@ -11,4 +11,4 @@ The program takes two arguments as input:
 1. `--file image_file`
 2. `--weights frozen_east.pb` 
 
-[EAST .pb file](https://github.com/oyyd/frozen_east_text_detection.pb)
+Use shell script to or download weights from [EAST .pb file](https://github.com/oyyd/frozen_east_text_detection.pb)
