@@ -22,9 +22,9 @@ fn try_main() -> Result<(), Box<dyn Error>> {
     // parse arguments
     // file: image file
     // weights: network weights
-    let matches = App::new("Knowledge Component Extraction")
+    let matches = App::new("East Text Detection")
         .version("0.1.0")
-        .about("Analyzes programming videos and extracts knowledge components")
+        .about("Text Detection from Videos or Images")
         .arg(Arg::with_name("file")
                 .short("f")
                 .long("file")
