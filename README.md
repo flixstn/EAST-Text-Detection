@@ -12,3 +12,5 @@ The program takes two arguments as input:
 2. `--weights frozen_east.pb` 
 
 Use shell script to or download weights from [EAST .pb file](https://github.com/oyyd/frozen_east_text_detection.pb)
+
+`cargo run -- --file path/to/file --weights path/to/weights.pb`
