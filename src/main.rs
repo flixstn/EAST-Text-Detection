@@ -34,7 +34,7 @@ fn try_main() -> Result<(), Box<dyn Error>> {
                 .short("w")
                 .long("weights")
                 .takes_value(true)
-                .help("Yolo weights"))
+                .help("Frozen weights"))
         .get_matches();
 
     // read arguments for network configuration and image processing
