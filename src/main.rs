@@ -107,7 +107,6 @@ fn try_main() -> Result<(), Box<dyn Error>> {
     let _ = wait_key(0)?;
 
     Ok(())
-
 }
 
 fn decode(scores: &Mat, geometry: &Mat, score_thresh: f32, detections: &mut VectorOfRotatedRect, confidences: &mut VectorOff32) -> Result<(), Box<dyn Error>> {
