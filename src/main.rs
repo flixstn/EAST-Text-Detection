@@ -60,7 +60,7 @@ fn try_main() -> Result<(), Box<dyn Error>> {
     output_layers.push("feature_fusion/Conv_7/Sigmoid");
     output_layers.push("feature_fusion/concat_3");
 
-    let mut blob = Mat::default()?;
+    let mut blob = Mat::default();
 
     blob_from_image_to(&img, &mut blob, 1.0, Size::new(inp_width, inp_height), Scalar::new(123.68, 116.78, 103.94, 0.), true, false, CV_32F)?;
     net.set_input(&blob, "", 1.0, Scalar::new(0., 0., 0., 0.))?;
@@ -103,7 +103,8 @@ fn try_main() -> Result<(), Box<dyn Error>> {
     }
 
     // show image and wait for keyboard input
-    imshow("image", &img.clone())?;
+    // imshow("image", &img.clone())?;
+    imshow("image", &img)?;
     let _ = wait_key(0)?;
 
     Ok(())
