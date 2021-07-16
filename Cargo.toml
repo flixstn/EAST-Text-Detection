@@ -7,4 +7,4 @@ edition = "2018"
 
 [dependencies]
 clap = "2.33.3"
-opencv = {version = "0.47", features = ["contrib"]}
+opencv = "0.53"
