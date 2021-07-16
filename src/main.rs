@@ -103,7 +103,6 @@ fn try_main() -> Result<(), Box<dyn Error>> {
     }
 
     // show image and wait for keyboard input
-    // imshow("image", &img.clone())?;
     imshow("image", &img)?;
     let _ = wait_key(0)?;
 
